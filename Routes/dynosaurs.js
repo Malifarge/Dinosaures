@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const {Dynosaur} = require('../models/index')
+const {ifExist} = require('../Middleware/Dynosaurs')
 
 app.get('/', async (req,res)=>{
     try{
@@ -23,24 +24,16 @@ app.post('/', async (req,res)=>{
     }
 })
 
-app.get('/:id',async(req,res)=>{
-
-    const {id} = req.params
-
+app.get('/:id',ifExist,async(req,res)=>{
     try{
-        const dynosaurs = await Dynosaur.findOne({
-            where: {
-                id
-            }
-        })
-        res.json(dynosaurs)
+        res.json(req.Dynosaur)
     } catch(e){
         console.log(e);
         res.status(500).json('Internal server error')
     }
 })
 
-app.delete('/:id', async(req,res)=>{
+app.delete('/:id',ifExist, async(req,res)=>{
     const {id} = req.params
 
 try{
