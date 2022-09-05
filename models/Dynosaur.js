@@ -9,10 +9,10 @@ module.exports = sequelize =>{
             type: DataTypes.STRING
         },
         apparition_Year:{
-            type: DataTypes.STRING
+            type: DataTypes.INTEGER
         },
         disparition_Year:{
-            type: DataTypes.STRING
+            type: DataTypes.INTEGER
         },
         describe:{
             type: DataTypes.STRING
