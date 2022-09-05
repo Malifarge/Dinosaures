@@ -40,4 +40,20 @@ app.get('/:id',async(req,res)=>{
     }
 })
 
+app.delete('/:id', async(req,res)=>{
+    const {id} = req.params
+
+try{
+    const dynosaurs = await Dynosaur.destroy({
+        where: {
+            id
+        }
+    })
+    res.status(204).json('ok')
+}catch(e){
+    console.log(e);
+    res.status(500).json('Internal server error')
+}
+})
+
 module.exports = app
