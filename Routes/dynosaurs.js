@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const {Dynosaur} = require('../models/index')
-const {ifExist} = require('../Middleware/Dynosaurs')
+const {ifExist,ifNotExist} = require('../Middleware/Dynosaurs')
 
 app.get('/', async (req,res)=>{
     try{
@@ -14,7 +14,7 @@ app.get('/', async (req,res)=>{
 
 })
 
-app.post('/', async (req,res)=>{
+app.post('/',ifNotExist,async (req,res)=>{
     try{
         const dynosaurs = await Dynosaur.create(req.body)
         res.json(dynosaurs)

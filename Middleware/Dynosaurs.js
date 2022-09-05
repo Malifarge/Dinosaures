@@ -16,6 +16,22 @@ const ifExist = async (req,res,next)=>{
     }
 }
 
+const ifNotExist = async (req,res,next) =>{
+    const {scientificName} = req.body
+    const dynosaur = await Dynosaur.findOne({
+        where:{
+            scientificName
+        }
+    })
+
+    if(!dynosaur){
+        next()
+    }else{
+        res.status(409).json("Dynosaut elready exist")
+    }
+}
+
 module.exports = {
-    ifExist
+    ifExist,
+    ifNotExist
 }
