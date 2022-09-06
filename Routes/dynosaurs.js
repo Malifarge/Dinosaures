@@ -31,12 +31,7 @@ app.get('/', async (req,res)=>{
 })
 
 app.get('/:id',ifExist,async(req,res)=>{
-    try{
         res.json(req.Dynosaur)
-    } catch(e){
-        console.log(e);
-        res.status(500).json('Internal server error')
-    }
 })
 
 app.delete('/:id',ifExist, async(req,res)=>{
