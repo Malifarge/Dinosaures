@@ -34,7 +34,7 @@ app.get('/:id',ifExist,async(req,res)=>{
         res.json(req.Dynosaur)
 })
 
-app.put('/:id',async (req,res)=>{
+app.put('/:id',ifExist,async (req,res)=>{
     const {id} = req.params
     try{
         await Dynosaur.update(req.body,{
