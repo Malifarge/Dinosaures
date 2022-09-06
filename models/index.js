@@ -2,8 +2,10 @@ require("dotenv").config()
 
 const {Sequelize} = require("sequelize")
 
-const sequelize = new Sequelize ('dynosaurs',"root", process.env.MDP, {
-    host: '127.0.0.1',
+const {DB_NAME,DB_USERNAME,MDP,DB_HOST } = process.env
+
+const sequelize = new Sequelize (DB_NAME,DB_USERNAME,MDP, {
+    host: DB_HOST,
     dialect: 'mysql',
     logging: false
 })
