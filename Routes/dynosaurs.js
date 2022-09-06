@@ -34,11 +34,33 @@ app.get('/:id',ifExist,async(req,res)=>{
         res.json(req.Dynosaur)
 })
 
+app.put('/:id',async (req,res)=>{
+    const {id} = req.params
+    try{
+        await Dynosaur.update(req.body,{
+            where: {id}
+        })
+
+        const dynosaurs = await Dynosaur.findOne({
+            where: {
+                id
+            }
+        })
+
+        res.json(dynosaurs)
+
+        
+    }catch(e){
+        console.log(e);
+        res.status(500).json('Internal server error')
+    }
+})
+
 app.delete('/:id',ifExist, async(req,res)=>{
     const {id} = req.params
 
 try{
-    const dynosaurs = await Dynosaur.destroy({
+     await Dynosaur.destroy({
         where: {
             id
         }
