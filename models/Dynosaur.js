@@ -15,7 +15,7 @@ module.exports = sequelize =>{
             type: DataTypes.INTEGER
         },
         describe:{
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
         color:{
             type: DataTypes.STRING
